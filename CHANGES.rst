@@ -1,11 +1,53 @@
 ﻿Changelog
 =========
 
-Changes in current version of Apache Libcloud
----------------------------------------------
+Changes in Apache Libcloud 1.2.0
+--------------------------------
+
+General
+~~~~~~~
+
+- Fix caching of auth tokens in the Google Compute Engine drivers. Now we make
+  sure that the file is truncated before writing a new token. Not truncating
+  the file would cause issues if the new token is shorted then the existing one
+  which is cached in the file.
+  (GITHUB-844, LIBCLOUD-835)
+  [Paul Tiplady]
 
 Compute
 ~~~~~~~
+
+- [gce] Fix image undeprecation in GCE
+  (GITHUB-852)
+  [Max Illfelder]
+
+- [gce] Added Managed Instance Groups
+  (GITHUB-842)
+  [Tom Melendez]
+
+- [gce] Allow undeprecation of an image.
+  (GITHUB-851)
+  [Max Illfelder]
+
+- [cloudstack] BUGFIX Values with wildcards failed signature validation
+  (GITHUB-846)
+  [Ronald van Zantvoot]
+
+- [cloudstack] Added StorageState-Migrating to the cloudstack driver.
+  (GITHUB-847)
+  [Marc-Aurèle Brothier]
+
+- [google compute] Update copy image logic to match create image.
+  (GITHUB-828)
+  [Max Illfelder]
+
+- Removed HD attribute from the Abiquo compute driver to support the 3.4 API
+  (GITHUB-840)
+  [David Freedman]
+
+- Add image and size details to `list_nodes` response in Dimension Data driver
+  (GITHUB-832)
+  [Anthony Shaw]
 
 - Add support for changing VM admin password in VMware driver
   (GITHUB-833)
@@ -14,6 +56,17 @@ Compute
 - Add Barcelona (Spain) region to the Aurora Compute driver.
   (GITHUB-835)
   [Wido den Hollander]
+
+- Various improvements in the libvirt driver.
+  (GITHUB-838)
+  [Rene Kjellerup]
+
+Load balancer
+~~~~~~~~~~~~~
+
+- Add support for temporary IAM role credentials (token) to the AWS ELB driver.
+  (GITHUB-843)
+  [Anton Kozyrev]
 
 DNS
 ~~~
@@ -39,6 +92,13 @@ Container
   (GITHUB-831)
   [Jamie Cressey]
 
+Storage
+~~~~~~~
+
+- Fix authentication issue in S3/China region, disabled multipart uploads as not supported
+  by region.
+  (GITHUB-839)
+  [Luke Morfitt]
 
 Changes with Apache Libcloud 1.1.0
 ----------------------------------
